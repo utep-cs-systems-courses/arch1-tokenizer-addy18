@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include tokenizer.h
+#include "tokenizer.h"
 
 // true if c is a tab or space, not zero
 int space_char(char c){
@@ -19,11 +19,11 @@ int non_space_char(char c){
 }
 
 // * to first (non-space) char in first word in s
-char *word_start(char *s){
-   while(space_char(*s)){
-     s++;
+char word_start(char *str){
+   while(space_char(*str)){
+     str++;
    }
-   return s;
+   return *str;
 }
 
 // * to char after end of word
