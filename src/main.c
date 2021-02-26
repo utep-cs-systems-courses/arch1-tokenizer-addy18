@@ -1,31 +1,28 @@
 #include <stdio.h>
+#include "tokenizer.h"
 
 int main(){
   char str[50];
   int choice;
   
-  while(1){
-    printf("Select an option: \n");
-    printf("1. tokenize a string\n");
-    printf("2. string history\n");
-    printf("3. exit\n");
-    scanf("%d", &choice);
-    printf("\n");
+   printf("Enter a string:\n");
+   printf("> ");
+   fgets(str, 50, stdin);
 
-    if(choice == 1){
-      printf("Enter a string:\n");
-      printf("> ");
-      fgets(str, 50, stdin);
+   printf("%s\n", str);
 
-      printf("%s\n", str);
-    }else if(choice == 2){
-      printf("history\n");
-    }else if(choice == 3){
-      printf("Goodbye :)\n");
-      goto done;
-    }
-  }
-    
-  done:
-    return 0;
+   int words = space_char(*str);
+   printf("1 - true, 0 - false\n");
+   printf("space char: %d\n", words);
+   words = non_space_char(*str);
+   printf("non space char: %d\n\n", words);
+
+   char b = *word_start(str);
+   printf("word start: %c\n", b);
+
+   char t = *word_terminator(str);
+   printf("word terminator: %c\n", t);
+
+   int w = count_words(str);
+   printf("count words: %d\n", w);
 }
