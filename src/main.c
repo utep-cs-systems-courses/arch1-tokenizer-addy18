@@ -1,28 +1,50 @@
 #include <stdio.h>
 #include "tokenizer.h"
+#include "history.h"
 
 int main(){
   char str[50];
   int choice;
+  List *list = init_history();
+  int flag = 1;
   
-   printf("Enter a string:\n");
-   printf("> ");
-   fgets(str, 50, stdin);
 
-   printf("%s\n", str);
+   printf("Select an option:");
+   while(1){
+     printf(" 't' tokenize, 'h' history, 'v' view history, 'q' quit \n");
+     fgets(str, 50, stdin);
 
-   int words = space_char(*str);
-   printf("1 - true, 0 - false\n");
-   printf("space char: %d\n", words);
-   words = non_space_char(*str);
-   printf("non space char: %d\n\n", words);
+     switch(str[0]){
+     case 't':
+	 printf("enter a sentence: \n>");
+	 fgets(str, 50, stdin);
+	 char **token = tokenize(str);
+	 print_tokens(token);
+	 break;
 
-   char b = *word_start(str);
-   printf("word start: %c\n", b);
+     case 'h':
+       printf("enter id number: ");
+       scanf("%d", &choice);
 
-   char t = *word_terminator(str);
-   printf("word terminator: %c\n", t);
+       char *retrieved_hist = get_history(list, choice);
+       char **tokens = tokenize(retrieved_hist);
 
-   int w = count_words(str);
-   printf("count words: %d\n", w);
+       printf("retrieved: %s\n", retrieved_hist);
+       print_tokens(tokens);
+       free_tokens(tokens);
+       break;
+
+     case 'v':
+       print_history(list);
+       break;
+       
+     case 'q':
+	 printf("goodbye");
+	 return 0;
+	 break;
+
+       default:
+	 printf("invalid input");
+     }
+   }
 }
