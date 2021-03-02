@@ -22,7 +22,6 @@ int non_space_char(char c){
 char *word_start(char *str){
    int i = 0;
    while(space_char(str[i])) i++;
-   printf("start\n");
    return &str[i];
 }
 
@@ -30,7 +29,6 @@ char *word_start(char *str){
 char *word_terminator(char *word){
   int i = 0;
   while(non_space_char(word[i])) i++;
- 
   return &word[i];
 }
 
@@ -39,9 +37,8 @@ int count_words(char *s){
   int count = 0;
   int i = 0;
   while(s[i] != '\0'){
-    if(space_char(s[i]) && non_space_char(s[i+1]))
-       count++;
-       i++;
+    if(space_char(s[i]) && non_space_char(s[i+1])) count++;
+    i++;
   }
   count++;
   return count;
