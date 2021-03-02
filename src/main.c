@@ -11,7 +11,7 @@ int main(){
 
    printf("Select an option:");
    while(1){
-     printf(" 't' tokenize, 'h' history, 'v' view history, 'q' quit \n");
+     printf("Select an option:\n 't' tokenize, 'h' history, 'v' view history, 'q' quit \n");
      fgets(str, 50, stdin);
 
      switch(str[0]){
@@ -20,6 +20,8 @@ int main(){
 	 fgets(str, 50, stdin);
 	 char **token = tokenize(str);
 	 print_tokens(token);
+	 add_history(list, str);
+	 free_tokens(token);
 	 break;
 
      case 'h':
@@ -39,12 +41,12 @@ int main(){
        break;
        
      case 'q':
-	 printf("goodbye");
+	 printf("goodbye\n");
 	 return 0;
 	 break;
-
-       default:
-	 printf("invalid input");
-     }
+	 /*
+     default:
+	 printf("invalid input\n");
+	 */}
    }
 }
