@@ -75,7 +75,7 @@ char **tokenize(char *str){
 void print_tokens(char **tokens){
   int index = 0;
   while(tokens[index] != NULL){
-    printf("%s\n", tokens[index]);
+    // printf("%s\n", tokens[index]);
     index++;
   }
 }
