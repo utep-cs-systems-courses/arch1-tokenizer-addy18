@@ -20,11 +20,10 @@ void add_history(List *list, char *str){
   node -> next = malloc(sizeof(Item));
   node -> next -> str = copy_str(str, (word_terminator(str) - word_start(str)));
   node -> next -> id = id;
-
 }
 
 char *get_history(List *list, int id){
-  int curr_id = 1;
+  int curr_id = 0;
   Item *temp = list -> root;
   while(temp -> next != NULL){
     if(curr_id = temp -> id){
@@ -35,6 +34,7 @@ char *get_history(List *list, int id){
   }
   return temp -> str;
 }
+
 
 void print_history(List *list){
   Item *temp = list -> root;
