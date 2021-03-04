@@ -21,6 +21,7 @@ int non_space_char(char c){
 // * to first (non-space) char in first word in s
 char *word_start(char *str){
    int i = 0;
+   // traverse until hit a nonpsace character
    while(space_char(str[i])) i++;
    return &str[i];
 }
@@ -28,6 +29,7 @@ char *word_start(char *str){
 // * to char after end of word --- look back 
 char *word_terminator(char *word){
   int i = 0;
+  // traverse until hit a space character 
   while(non_space_char(word[i])) i++;
   return &word[i];
 }
@@ -37,18 +39,19 @@ int count_words(char *s){
   int count = 0;
   int i = 0;
   while(s[i] != '\0'){
+    // if theres a space and nonspace following add to count
     if(space_char(s[i]) && non_space_char(s[i+1])) count++;
-    i++;
+    i++; //move to next index
   }
   count++;
   return count;
 }
 
 char *copy_str(char *inStr, short len){
-  char *outputString = malloc((len+1) *sizeof(char));
+  char *outputString = malloc((len+1) *sizeof(char)); // allocate memory for the new string
   int i = 0;
   while(i <= len){
-    outputString[i] = inStr[i];
+    outputString[i] = inStr[i]; // assignes old index to the new pointes index
     i++;
   }
   return outputString;
@@ -72,14 +75,16 @@ char **tokenize(char *str){
   return tokens;
 }
 
+// print all tokens
 void print_tokens(char **tokens){
   int index = 0;
   while(tokens[index] != NULL){
-    // printf("%s\n", tokens[index]);
+    printf("%s\n", tokens[index]);
     index++;
   }
 }
 
+//frees all tokens
 void free_tokens(char **tokens){
   int index = 0;
   for(index = 0; tokens[index] != 0; index++){
